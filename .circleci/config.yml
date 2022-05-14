@@ -11,9 +11,9 @@ jobs:
       - run:
           name: "Start services ..."
           command: docker-compose -f docker-compose.yml up -d
-      # - run:
-          # name: "Check convention javascript"
-          # command: docker-compose -f docker-compose.yml exec app npm run eslint
+      - run:
+          name: "Check convention javascript"
+          command: docker-compose -f docker-compose.yml down
 
 
   build:
