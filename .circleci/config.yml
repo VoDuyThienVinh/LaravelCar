@@ -8,14 +8,17 @@ jobs:
     steps:
       - checkout
       - run: echo "Start format and linting code"
-      - run: chmod +x ./src/.docker/script/appStart.sh 
-      - run:
-          name: "Start services ..."
-          command: docker-compose -f docker-compose.yml up -d
+      - run: pwd
+      - run: ls -al
+      - run: chmod +x ./src/.docker/script/appStart.sh
       - restore_cache:
           keys:
             - vendor-v1-{{ checksum "./src/composer.lock" }}
-            - node-modules-v1{{ checksum "./src/package-lock.json" }}
+            - node-modules-v1{{ checksum "./src/package-lock.json" }} 
+      - run:
+          name: "Start services ..."
+          command: docker-compose -f docker-compose.yml up -d
+      
       - save_cache:
           paths:
             - "./src/vendor"
