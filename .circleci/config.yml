@@ -27,6 +27,7 @@ jobs:
           paths:
             - "./src/node_modules"
           key: node-modules-v1{{ checksum "./src/package-lock.json" }}
+          
       - run:
           name: "Check convention javascript"
           command: docker-compose -f docker-compose.yml down
@@ -54,8 +55,7 @@ jobs:
       - checkout
       - run: echo "Start test databases"
       - run: docker-compose -f docker-compose.yml up -d
-      # - run: docker-compose -f docker-compose.yml exec app composer install
-      # - run: docker-compose -f docker-compose.yml exec app php artisan test
+
 
 
   test_unit:
@@ -88,13 +88,7 @@ jobs:
           name: "Start services ..."
           command: docker-compose -f docker-compose.yml up -d
 
-      # - run:
-          # name: "Install composer ..."
-          # command: docker-compose -f docker-compose.yml exec app composer install
-
-      # - run:
-          # name: "Running test coverage ..."
-          # command: docker-compose -f docker-compose.yml exec app php artisan test
+      
 
   test_php:
     machine:
